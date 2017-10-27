@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "baseUrl": ".",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noUnusedLocals": true,
+    "noImplicitUseStrict": false,
+    "stripInternal": true,
+    "newLine": "lf",
+    "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "importHelpers": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": false,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": [
+      "DOM",
+      "ScriptHost",
+      "ES5",
+      "ES6",
+      "ES7",
+      "ES2015",
+      "ES2016",
+      "ES2017"
+    ],
+    "rootDir": "."
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "generators/app/templates"
+  ]
+}

@@ -1,0 +1,7 @@
+/.idea
+/node_modules/
+/.yo-rc.json
+/generators/*/*.js
+/generators/*/*.js.map
+/util/**/*.js
+/util/**/*.js.map
