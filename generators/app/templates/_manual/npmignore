@@ -10,3 +10,4 @@
 /*.tmp.js
 /*.tmp.json
 /coverage/
+/.yo-rc.json

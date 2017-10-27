@@ -7,7 +7,7 @@ cache:
     - node_modules
 
 script:
-  - npm run build:demo:aot
+  - ./node_modules/.bin/gulp build:demo:aot
   - npm test
 
 after_success: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls

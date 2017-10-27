@@ -11,5 +11,6 @@ export enum ConfigKey {
   HOMEPAGE = 'pkg.homepage',
   PACKAGE_LICENSE = 'pkg.license',
   GITHUB_DEFAULT_USERNAME = 'github.default.username',
-  LIB_GLOBAL_NAME = 'webpack.libName'
+  LIB_GLOBAL_NAME = 'webpack.libName',
+  DEMO_PORT = 'demoPort'
 }
