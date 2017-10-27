@@ -225,13 +225,6 @@ class PackageJSONGenerator extends AloGenerator {
     );
   }
 
-  private _copyRoot() {
-    this.fs.copy(
-      this.templatePath('*'),
-      this.destinationPath()
-    )
-  }
-
   async writing() {
     this._writePackageJSON();
     const packageJsonWritePromise = this.commit();
@@ -247,7 +240,8 @@ class PackageJSONGenerator extends AloGenerator {
 
     if (shouldWrite) {
       this._writeManuals();
-      this._copyRoot();
+      this.fs.copy(this.templatePath('*'), this.destinationPath());
+      this.fs.copy(this.templatePath('src', '**', '*'), this.destinationPath('src'));
 
       await this.commit();
     } else {
