@@ -1,6 +1,6 @@
 {
   "name": "generator-alo-ng",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "node": ">=8.0"
   },
@@ -25,9 +25,7 @@
     "yeoman-generator": "^2.0.1"
   },
   "devDependencies": {
-    "@types/chalk": "^2.2.0",
     "@types/lodash": "^4.14.80",
-    "@types/moment": "^2.13.0",
     "@types/yeoman-generator": "^2.0.0",
     "rimraf": "^2.6.2",
     "typescript": "^2.5.3"
