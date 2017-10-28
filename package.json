@@ -18,19 +18,6 @@
     "prewatch": "npm run clean",
     "watch": "tsc --watch"
   },
-  "files": [
-    "generators",
-    "types",
-    "util",
-    ".npmignore",
-    ".gitignore",
-    ".travis.yml",
-    "package.json",
-    "package-lock.json",
-    "README.md",
-    "tsconfig.json",
-    "tsconfig.prod.json"
-  ],
   "keywords": [
     "yeoman-generator",
     "yeoman",
