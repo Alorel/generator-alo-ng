@@ -8,3 +8,5 @@
 /test/**/*.js
 /test/**/*.js.map
 /*.tgz
+/.nyc_output/
+/coverage/
