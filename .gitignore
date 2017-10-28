@@ -5,5 +5,7 @@
 /generators/*/*.js.map
 /util/**/*.js
 /util/**/*.js.map
+/test/**/*.js
+/test/**/*.js.map
 /*.tgz
 /types/
