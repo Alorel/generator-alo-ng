@@ -5,8 +5,12 @@ import {Log} from "../../util/Log";
 import * as fs from "fs";
 import {crossSpawn} from "../../util/CrossSpawn";
 
-class AloNg4ComponentGenerator extends AloGenerator {
+/**
+ * Generate an Angular library stub
+ */
+class AloNgComponentGenerator extends AloGenerator {
 
+  /** @internal */
   private githubUsernamePromise: Promise<string | null>;
 
   initializing() {
@@ -173,7 +177,7 @@ class AloNg4ComponentGenerator extends AloGenerator {
     );
   }
 
-  private get _authorField(): string | object {
+  get _authorField(): string | object {
     const name: string = this.cfg.get(ConfigKey.PACKAGE_AUTHOR_NAME);
     const email: string = this.cfg.get(ConfigKey.PACKAGE_AUTHOR_EMAIL);
     const url: string = this.cfg.get(ConfigKey.PACKAGE_AUTHOR_URL);
@@ -199,7 +203,7 @@ class AloNg4ComponentGenerator extends AloGenerator {
     }
   }
 
-  private _writePackageJSON() {
+  _writePackageJSON() {
     const pkgJsonPath = this.destinationPath('package.json');
 
     if (!this.fs.exists(pkgJsonPath)) {
@@ -230,7 +234,7 @@ class AloNg4ComponentGenerator extends AloGenerator {
     }
   }
 
-  private _writeManuals() {
+  _writeManuals() {
     this.fs.copyTpl(
       this.templatePath('_manual', 'README.md'),
       this.destinationPath('README.md'),
@@ -305,5 +309,5 @@ class AloNg4ComponentGenerator extends AloGenerator {
   }
 }
 
-export = AloNg4ComponentGenerator;
+export = AloNgComponentGenerator;
 

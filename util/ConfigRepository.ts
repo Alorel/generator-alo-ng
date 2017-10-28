@@ -4,10 +4,14 @@ import {ConfigKey} from "./ConfigKey";
 
 export class ConfigRepository {
 
-  constructor(private readonly store: Storage) {
+  /** @internal */
+  private readonly store: Storage;
 
+  constructor(store: Storage) {
+    this.store = store;
   }
 
+  /** @internal */
   private static formatKeyPath(kp: string | string[]): string[] {
     if (Array.isArray(kp)) {
       return kp;

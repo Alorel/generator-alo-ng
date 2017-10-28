@@ -16,7 +16,8 @@
     "importHelpers": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "types",
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -37,6 +38,7 @@
   ],
   "exclude": [
     "node_modules",
+    "types",
     "generators/app/templates"
   ]
 }

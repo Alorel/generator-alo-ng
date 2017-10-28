@@ -3,7 +3,7 @@ import {merge} from 'lodash';
 
 const xSpawn: typeof spawn = require('cross-spawn');
 
-export const crossSpawn = (command: string, args: string[] = [], options: SpawnOptions = {}): Promise<void> => {
+export function crossSpawn(command: string, args: string[] = [], options: SpawnOptions = {}): Promise<void> {
   return new Promise((resolve, reject) => {
     let errored: boolean = false;
 
@@ -21,4 +21,4 @@ export const crossSpawn = (command: string, args: string[] = [], options: SpawnO
         }
       });
   });
-};
+}

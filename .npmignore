@@ -1,9 +1,8 @@
 /.idea/
 /node_modules/
 /.yo-rc.json
-/generators/*/*.js
+/generators/*/*.ts
 /generators/*/*.js.map
-/util/**/*.js
+/util/**/*.ts
 /util/**/*.js.map
 /*.tgz
-/types/
