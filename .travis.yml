@@ -5,11 +5,11 @@ node_js: 8
 cache:
   directories:
     - node_modules
-    - .travis-tmp/node_modules
 
 script:
   - npm test
   - rm -rf .travis-tmp
+  - mkdir .travis-tmp
   - cd .travis-tmp
   - node ../test/util/install-app-4.js
   - npm install
