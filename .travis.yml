@@ -18,6 +18,8 @@ before_deploy:
   - npm run build:prod
   - npm pack
 
+before_cache: rm -rf node_modules/.cache
+
 deploy:
   - provider: npm
     skip_cleanup: true
