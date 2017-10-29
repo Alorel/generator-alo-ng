@@ -4,8 +4,8 @@ node_js: 8
 
 cache:
   directories:
-  - node_modules
-  - ".travis-tmp/node_modules"
+    - node_modules
+    - ".travis-tmp/node_modules"
 
 script:
   - npm test
