@@ -19,7 +19,7 @@
     "prewatch": "npm run clean",
     "watch": "tsc --watch",
     "pretest": "npm run clean && rimraf .nyc_output && tsc",
-    "test": "nyc ava --verbose --no-cache --color test/tests/**/*.js"
+    "test": "nyc ava --verbose --color test/tests/**/*.js"
   },
   "keywords": [
     "yeoman-generator",
