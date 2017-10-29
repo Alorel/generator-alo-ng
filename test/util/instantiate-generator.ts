@@ -23,6 +23,9 @@ export function instantiateApp(options?: any): AppGenerator {
   return instantiateGenerator(AppGenerator, require.resolve('../../generators/app/index'), options)
 }
 
-export function instantiateApp4(options?: any): App4Generator {
-  return instantiateGenerator(App4Generator, require.resolve("../../generators/app-4/index"));
+export function instantiateApp4(): App4Generator {
+  return instantiateGenerator(
+    App4Generator,
+    require.resolve("../../generators/app-4/index")
+  );
 }

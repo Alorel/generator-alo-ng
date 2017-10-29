@@ -8,7 +8,7 @@
   "main": "generators/app/index.js",
   "types": "types/generators/app/index.d.ts",
   "scripts": {
-    "clean": "rimraf test/**/*.js test/**/*.js.map generators/*/*.js generators/*/*.js.map util/**/*.js.map util/**/*.js types ./*.tgz",
+    "clean": "rimraf test/**/*.js test/**/*.js.map generators/*/*.js generators/*/*.js.map util/**/*.js.map util/**/*.js types ./*.tgz .travis-tmp",
     "prereinstall": "rm -rf node_modules package-lock.json",
     "reinstall": "npm install",
     "prebuild": "npm run clean",
@@ -49,6 +49,7 @@
     "@types/yeoman-generator": "^2.0.0",
     "@types/yeoman-test": "^1.7.2",
     "ava": "^0.23.0",
+    "coveralls": "^3.0.0",
     "glob": "^7.1.2",
     "nyc": "^11.2.1",
     "rimraf": "^2.6.2",
