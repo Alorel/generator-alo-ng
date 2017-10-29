@@ -4,6 +4,7 @@
   "engines": {
     "node": ">=8.0"
   },
+  "preferGlobal": true,
   "description": "Yeoman generator for an Angular 4 module",
   "main": "generators/app/index.js",
   "types": "types/generators/app/index.d.ts",

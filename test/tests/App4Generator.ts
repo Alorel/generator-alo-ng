@@ -61,6 +61,7 @@ const rootFiles = glob.sync(path.join(templateRoot, '*.*'))
   .concat(
     'LICENSE',
     'package.json',
+    '.git',
     '.gitignore',
     '.npmignore',
     'README.md',

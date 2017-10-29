@@ -88,7 +88,7 @@ class Ng4LibGenerator extends Generator {
     return pkg;
   }
 
-  writing() {
+  async writing() {
     this.fs.writeJSON(
       this.destinationPath('package.json'),
       this._packageJSON,
@@ -140,7 +140,31 @@ class Ng4LibGenerator extends Generator {
     );
   }
 
+  async _setupGit() {
+    if (this.promptAnswers[ConfigKey.usingGit]) {
+      await crossSpawn('git', ['init'], {
+        cwd: this.destinationRoot()
+      });
+      await crossSpawn('git', ['add', '.'], {
+        cwd: this.destinationRoot()
+      });
+
+      if (this.promptAnswers[ConfigKey.gitRepo]) {
+        await crossSpawn('git', [
+          'remote',
+          'add',
+          'origin',
+          this.promptAnswers[ConfigKey.gitRepo]
+        ], {
+          cwd: this.destinationRoot()
+        });
+      }
+    }
+  }
+
   async install() {
+    await this._setupGit();
+
     if (this.promptAnswers[ConfigKey.installDeps]) {
       await crossSpawn('npm', ['install'], {
         cwd: this.destinationRoot()
