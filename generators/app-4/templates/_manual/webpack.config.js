@@ -97,19 +97,21 @@ class WebpackFactory {
       }));
     }
 
+    if ([MODE.TEST, MODE.DEMO_JIT, MODE.DEMO_AOT].includes(this.mode)) {
+      out.push(
+        new webpack.ContextReplacementPlugin(
+          /angular(\\|\/)core(\\|\/)@angular/,
+          path.join(__dirname, 'src')
+        )
+      );
+    }
+
     if (this.mode === MODE.TEST) {
       out.push(
         new webpack.SourceMapDevToolPlugin({
           filename: null,
           test: /\.(ts|js)($|\?)/i
         })
-      );
-
-      out.push(
-        new webpack.ContextReplacementPlugin(
-          /angular(\\|\/)core(\\|\/)@angular/,
-          path.join(__dirname, 'src')
-        )
       );
 
       out.push(new webpack.NoEmitOnErrorsPlugin());
