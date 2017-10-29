@@ -5,10 +5,10 @@ node_js: 8
 cache:
   directories:
     - node_modules
+    - .travis-tmp/node_modules
 
 script:
   - npm test
-  - rm -rf .travis-tmp
   - mkdir .travis-tmp
   - cd .travis-tmp
   - node ../test/util/install-app-4.js
@@ -18,4 +18,4 @@ script:
   - cd ..
   - rm -rf .travis-tmp
 
-after_success: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+after_success: "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
