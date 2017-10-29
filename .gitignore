@@ -11,3 +11,4 @@
 /types/
 /.nyc_output/
 /coverage/
+/.travis-tmp

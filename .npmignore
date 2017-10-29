@@ -5,8 +5,8 @@
 /generators/*/*.js.map
 /util/**/*.ts
 /util/**/*.js.map
-/test/**/*.js
-/test/**/*.js.map
+/test/
 /*.tgz
 /.nyc_output/
 /coverage/
+/.travis-tmp

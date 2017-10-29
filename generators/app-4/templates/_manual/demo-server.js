@@ -7,19 +7,7 @@ gulp.task('server', cb => {
 
   server = new StaticServer({
     rootPath: join(process.cwd(), '.demo'),
-    port: (() => {
-      try {
-        const port = require('../.yo-rc.json').demoPort;
-
-        if (port) {
-          return parseInt(port);
-        }
-      } catch (e) {
-
-      }
-
-      return parseInt(process.env.PORT || '1337');
-    })()
+    port: parseInt(process.env.PORT || '<%= DEMO_PORT %>')
   });
 
   server.start(() => {

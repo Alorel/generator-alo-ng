@@ -15,9 +15,13 @@ export function crossSpawn(command: string, args: string[] = [], options: SpawnO
         errored = true;
         reject(err);
       })
-      .once('exit', () => {
+      .once('exit', (code: number) => {
         if (!errored) {
-          resolve();
+          if (code === 0) {
+            resolve();
+          } else {
+            reject(new Error(`Exited with code ${code}`));
+          }
         }
       });
   });

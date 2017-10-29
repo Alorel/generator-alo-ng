@@ -8,7 +8,7 @@
     "prereinstall": "rm -rf node_modules package-lock.json",
     "reinstall": "npm install",
     "build": "gulp build",
-    "start": "static-server -p 1111 ./.demo",
+    "start": "gulp server",
     "test": "karma start",
     "build:demo:aot": "gulp build:demo:aot",
     "build:demo:aot:prod": "gulp build:demo:aot:prod"
