@@ -39,22 +39,16 @@ class Ng4LibGenerator extends Generator {
     pkg['private'] = !!this.promptAnswers[ConfigKey.packagePrivate];
     pkg.author = this._packageAuthor;
 
-    if (this.promptAnswers[ConfigKey.gitRepo]) {
-      pkg.repository = {
-        type: 'git',
-        url: `git+${this.promptAnswers[ConfigKey.gitRepo]}`
-      };
-    }
+    pkg.repository = {
+      type: 'git',
+      url: `git+${this.promptAnswers[ConfigKey.gitRepo]}`
+    };
 
-    if (this.promptAnswers[ConfigKey.homepage]) {
-      pkg.homepage = this.promptAnswers[ConfigKey.homepage];
-    }
+    pkg.homepage = this.promptAnswers[ConfigKey.homepage];
 
-    if (this.promptAnswers[ConfigKey.bugsUrl]) {
-      pkg.bugs = {
-        url: this.promptAnswers[ConfigKey.bugsUrl]
-      };
-    }
+    pkg.bugs = {
+      url: this.promptAnswers[ConfigKey.bugsUrl]
+    };
 
     const ANGULAR_STD_VERSION = '^4.4';
     const ANGULAR_MATERIAL_VERSION = '^2.0.0-beta.12';

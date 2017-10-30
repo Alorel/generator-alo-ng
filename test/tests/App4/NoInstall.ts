@@ -1,12 +1,12 @@
 import test from 'ava';
 import * as tmp from 'tmp';
 import * as yo from 'yeoman-test';
-import {instantiateApp4} from "../util/instantiate-generator";
-import {get4appPrompts, libs} from "../util/get4appPrompts";
+import {instantiateApp4} from "../../util/instantiate-generator";
+import {get4appPrompts, libs} from "../../util/get4appPrompts";
 import * as path from 'path';
 import * as glob from 'glob';
 import * as fs from 'fs';
-import {TmpDir} from "../util/TmpDir";
+import {TmpDir} from "../../util/TmpDir";
 import {get} from 'lodash';
 
 tmp.setGracefulCleanup();
