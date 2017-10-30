@@ -1,0 +1,14 @@
+{
+  "reporter": [
+    "text",
+    "html",
+    "lcov"
+  ],
+  "exclude": [
+    "**/generators/app-4/prompts.*",
+    "**/bin/**/*",
+    "**/util/ConfigKey.*",
+    "**/util/CrossSpawn.*",
+    "**/test/**/*"
+  ]
+}

@@ -12,7 +12,7 @@ script:
   - node mkdir-travis-tmp.js
   - bash -c "cd .travis-tmp && node ../test/util/install-app-4.js && npm install && npm run build:demo:aot && npm test"
 
-after_success: "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+after_success: "cat /.coverage/lcov.info | ./node_modules/.bin/coveralls"
 
 before_deploy:
   - npm run build:prod

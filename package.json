@@ -23,7 +23,7 @@
     "build:prod": "tsc -p tsconfig.prod.json",
     "prewatch": "npm run clean",
     "watch": "tsc --watch",
-    "pretest": "npm run clean && rimraf .nyc_output && tsc",
+    "pretest": "npm run clean && rimraf .nyc_output coverage && tsc",
     "test": "nyc ava --verbose --color test/tests/**/*.js"
   },
   "keywords": [
@@ -69,14 +69,5 @@
     "tmp": "0.0.33",
     "typescript": "^2.5.3",
     "yeoman-test": "^1.7.0"
-  },
-  "nyc": {
-    "exclude": [
-      "**/generators/app-4/prompts.*",
-      "**/bin/**/*",
-      "**/util/ConfigKey.*",
-      "**/util/CrossSpawn.*",
-      "**/test/**/*"
-    ]
   }
 }
