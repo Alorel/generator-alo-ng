@@ -1,6 +1,6 @@
 {
   "name": "generator-alo-ng",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=8.0"
   },
@@ -34,6 +34,14 @@
     "email": "a.molcanovas@gmail.com"
   },
   "license": "MIT",
+  "homepage": "https://github.com/Alorel/generator-alo-ng",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alorel/generator-alo-ng.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Alorel/generator-alo-ng/issues"
+  },
   "dependencies": {
     "cross-spawn": "^5.1.0",
     "generator-license": "^5.2.0",
