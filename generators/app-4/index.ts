@@ -125,6 +125,11 @@ class Ng4LibGenerator extends Generator {
     );
 
     this.fs.copy(
+      this.templatePath('_manual', '.travis.yml'),
+      this.destinationPath('.travis.yml')
+    );
+
+    this.fs.copy(
       this.templatePath('root', '*'),
       this.destinationPath()
     );

@@ -62,6 +62,7 @@ const rootFiles = glob.sync(path.join(templateRoot, '*.*'))
     'LICENSE',
     'package.json',
     '.git',
+    '.travis.yml',
     '.gitignore',
     '.npmignore',
     'README.md',
