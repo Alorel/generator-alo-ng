@@ -1,6 +1,6 @@
 {
   "name": "generator-alo-ng",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=8.0"
   },
@@ -48,17 +48,16 @@
     "url": "https://github.com/Alorel/generator-alo-ng/issues"
   },
   "dependencies": {
-    "cross-spawn": "^5.1.0",
-    "generator-license": "^5.2.0",
-    "lodash": "^4.17.4",
-    "moment": "^2.19.1",
-    "pad": "^2.0.1",
-    "tslib": "^1.8.0",
-    "yeoman-generator": "^2.0.1"
+    "cross-spawn": "^5.1",
+    "generator-license": "^5.2",
+    "lodash": "^4.17",
+    "yeoman-environment": "^2.0",
+    "yeoman-generator": "^2.0"
   },
   "devDependencies": {
     "@types/glob": "^5.0.33",
     "@types/lodash": "^4.14.80",
+    "@types/node": "^8.0.47",
     "@types/tmp": "0.0.33",
     "@types/yeoman-generator": "^2.0.0",
     "@types/yeoman-test": "^1.7.2",
@@ -69,7 +68,6 @@
     "rimraf": "^2.6.2",
     "tmp": "0.0.33",
     "typescript": "^2.5.3",
-    "yeoman-environment": "^2.0.5",
     "yeoman-test": "^1.7.0"
   },
   "nyc": {

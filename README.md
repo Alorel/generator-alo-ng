@@ -10,6 +10,10 @@
 
 A Yeoman generator for AOT-compatible Angular 4 libraries in UMD, ESM5 and ESM2015 formats.
 
+# Requirements
+
+- Node >= 8.0
+
 # Installation
 
     npm install -g generator-alo-ng
