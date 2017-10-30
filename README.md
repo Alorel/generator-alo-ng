@@ -12,11 +12,11 @@ A Yeoman generator for AOT-compatible Angular 4 libraries in UMD, ESM5 and ESM20
 
 # Installation
 
-    npm install -g yo generator-alo-ng
+    npm install -g generator-alo-ng
 
 # Usage
 
-    yo alo-ng
+    alo-ng
 
 # Gulp commands inside bundle
 

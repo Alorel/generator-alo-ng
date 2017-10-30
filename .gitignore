@@ -3,6 +3,8 @@
 /.yo-rc.json
 /generators/*/*.js
 /generators/*/*.js.map
+/bin/*.js
+/bin/*.js.map
 /util/**/*.js
 /util/**/*.js.map
 /test/**/*.js

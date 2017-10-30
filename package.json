@@ -1,15 +1,20 @@
 {
   "name": "generator-alo-ng",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "engines": {
     "node": ">=8.0"
+  },
+  "bin": {
+    "alo-ng": "./bin/alo-ng.js",
+    "alo-ng-4": "./bin/alo-ng-4.js"
   },
   "preferGlobal": true,
   "description": "Yeoman generator for an Angular 4 module",
   "main": "generators/app/index.js",
   "types": "types/generators/app/index.d.ts",
   "scripts": {
-    "clean": "rimraf test/**/*.js test/**/*.js.map generators/*/*.js generators/*/*.js.map util/**/*.js.map util/**/*.js types ./*.tgz",
+    "relink": "npm unlink && npm link",
+    "clean": "rimraf bin/**/*.js bin/**/*.js.map test/**/*.js test/**/*.js.map generators/*/*.js generators/*/*.js.map util/**/*.js.map util/**/*.js types ./*.tgz",
     "prereinstall": "rm -rf node_modules package-lock.json",
     "reinstall": "npm install",
     "prebuild": "npm run clean",
@@ -70,6 +75,7 @@
   "nyc": {
     "exclude": [
       "**/generators/app-4/prompts.*",
+      "**/bin/**/*",
       "**/util/ConfigKey.*",
       "**/util/CrossSpawn.*",
       "**/test/**/*"

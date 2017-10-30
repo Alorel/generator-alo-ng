@@ -5,6 +5,8 @@
 /generators/*/*.js.map
 /util/**/*.ts
 /util/**/*.js.map
+/bin/*.ts
+/bin/*.js.map
 /test/
 /*.tgz
 /.nyc_output/
