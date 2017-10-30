@@ -174,6 +174,12 @@ class Ng4LibGenerator extends Generator {
       await crossSpawn('npm', ['install'], {
         cwd: this.destinationRoot()
       });
+
+      if (this.promptAnswers[ConfigKey.usingGit]) {
+        await crossSpawn('git', ['add', '.'], {
+          cwd: this.destinationRoot()
+        });
+      }
     } else {
       this.log('Skipping dependency installation');
     }
