@@ -1,6 +1,6 @@
 {
   "name": "generator-alo-ng",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "node": ">=8.0"
   },
@@ -17,6 +17,7 @@
     "clean": "rimraf .travis-tmp bin/**/*.js bin/**/*.js.map test/**/*.js test/**/*.js.map generators/*/*.js generators/*/*.js.map util/**/*.js.map util/**/*.js types ./*.tgz",
     "prereinstall": "rm -rf node_modules package-lock.json",
     "reinstall": "npm install",
+    "postreinstall": "git add package.json && git add package-lock.json",
     "prebuild": "npm run clean",
     "build": "tsc",
     "prebuild:prod": "npm run clean",
