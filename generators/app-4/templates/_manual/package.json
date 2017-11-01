@@ -44,7 +44,6 @@
     "glob": "^7.1",
     "gulp": "^3.9",
     "gulp-inline-ng2-template": "^4.0",
-    "gulp-pug": "^3.3",
     "gulp-rename": "^1.2",
     "gulp-sequence": "^0.4",
     "istanbul-instrumenter-loader": "^3.0",

@@ -19,8 +19,7 @@ const aotTask = isProd => {
   const lastStep = [
     'clean:tmp:aot',
     'clean:tmp:pre-aot',
-    'clean:demo:map',
-    'copy:demo.pug'
+    'clean:demo:map'
   ];
 
   if (isProd) {
@@ -50,10 +49,7 @@ gulp.task('build:demo:aot:prod', aotTask(true));
 gulp.task('build:demo:jit', cb => {
   seq(
     'clean:demo',
-    [
-      'copy:demo.pug',
-      'compile:demo'
-    ],
+    'compile:demo',
     cb
   )
 });
