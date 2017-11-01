@@ -9,6 +9,7 @@ const MODE = require('./build/util/compile-mode');
 const TsConfigFactory = require('./build/util/tsconfig-factory');
 const {CheckerPlugin} = require('awesome-typescript-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin');
 
 const path = require('path');
 const webpack = require('webpack');
@@ -111,8 +112,11 @@ class WebpackFactory {
           filename: 'index.html',
           template: require.resolve('./src/demo/demo.pug'),
           minify: false,
-          inject: 'body'
-        })
+          inject: 'body',
+          preload: ['**/*.*'],
+          prefetch: []
+        }),
+        new ResourceHintWebpackPlugin()
       );
     }
 
