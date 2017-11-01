@@ -2,6 +2,7 @@ import * as Generator from 'yeoman-generator';
 import {getPrompts} from "./prompts";
 import {ConfigKey} from "../../util/ConfigKey";
 import {crossSpawn} from "../../util/CrossSpawn";
+import {mkdirSync, writeFileSync} from "fs";
 
 class Ng4LibGenerator extends Generator {
 
@@ -165,9 +166,14 @@ class Ng4LibGenerator extends Generator {
     await this._setupGit();
 
     if (this.promptAnswers[ConfigKey.installDeps]) {
-      await crossSpawn('npm', ['install'], {
-        cwd: this.destinationRoot()
-      });
+      if ('ALO_NG_MOCK_INSTALL' in process.env) {
+        mkdirSync(this.destinationPath('node_modules'));
+        writeFileSync(this.destinationPath('package-lock.json'), '{}');
+      } else {
+        await crossSpawn('npm', ['install'], {
+          cwd: this.destinationRoot()
+        });
+      }
 
       if (this.promptAnswers[ConfigKey.usingGit]) {
         await crossSpawn('git', ['add', '.'], {

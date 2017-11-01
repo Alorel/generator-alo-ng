@@ -7,10 +7,15 @@ cache:
     - node_modules
     - ".travis-tmp/node_modules"
 
+before_script: npm install -g node-gyp
+
 script:
   - npm test
-  - node mkdir-travis-tmp.js
-  - bash -c "cd .travis-tmp && node ../test/util/install-app-4.js && npm install && npm run build:demo:aot && npm test"
+  - mkdir -p .travis-tmp
+  - bash -c "cd .travis-tmp && node ../test/util/install-app-4.js"
+  - bash -c "cd .travis-tmp && npm install"
+  - bash -c "cd .travis-tmp && npm run build:demo:aot"
+  - bash -c "cd .travis-tmp && npm test"
 
 after_success: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
 

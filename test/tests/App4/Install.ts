@@ -28,8 +28,12 @@ test.before.cb.serial("Creating temp dir", t => {
   });
 });
 
-test.before.cb.serial("Running generator", t => {
+test.before.serial("Setting mock env", () => {
+  process.env.ALO_NG_MOCK_INSTALL = '1';
   process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = '1';
+});
+
+test.before.cb.serial("Running generator", t => {
   const app = instantiateApp4();
   const prompts = get4appPrompts();
   prompts[ConfigKey.installDeps] = true;
@@ -46,8 +50,9 @@ test.after("Removing temp dir", () => {
   }
 });
 
-test.after("Reset puppeteer env var", () => {
+test.after("Removing mock env", () => {
   delete process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD;
+  delete process.env.ALO_NG_MOCK_INSTALL;
 });
 
 test.cb("Package.json shouldn't contain ngrx", t => {
