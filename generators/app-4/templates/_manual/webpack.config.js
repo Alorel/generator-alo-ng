@@ -8,6 +8,7 @@ require('tmp').setGracefulCleanup();
 const MODE = require('./build/util/compile-mode');
 const TsConfigFactory = require('./build/util/tsconfig-factory');
 const {CheckerPlugin} = require('awesome-typescript-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 const webpack = require('webpack');
@@ -97,6 +98,24 @@ class WebpackFactory {
       }));
     }
 
+    if ([MODE.DEMO_JIT, MODE.DEMO_AOT].includes(this.mode)) {
+      out.push(
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          filename: `[name]${this.mode === MODE.DEMO_AOT ? '.[chunkhash]' : ''}.js`,
+          minChunks(module, count) {
+            return module.context && module.context.indexOf('node_modules') !== -1;
+          }
+        }),
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          template: require.resolve('./src/demo/demo.pug'),
+          minify: false,
+          inject: 'body'
+        })
+      );
+    }
+
     if ([MODE.TEST, MODE.DEMO_JIT, MODE.DEMO_AOT].includes(this.mode)) {
       out.push(
         new webpack.ContextReplacementPlugin(
@@ -145,13 +164,17 @@ class WebpackFactory {
           path: path.join(__dirname, 'dist', 'umd'),
           filename: '[name].js',
           libraryTarget: 'umd',
-          library: '<%= GLOBAL_LIB_NAME %>'
+          library: 'MyPkg'
         };
       case MODE.DEMO_JIT:
-      case MODE.DEMO_AOT:
         return {
           path: path.join(__dirname, '.demo'),
           filename: '[name].js',
+        }
+      case MODE.DEMO_AOT:
+        return {
+          path: path.join(__dirname, '.demo'),
+          filename: '[name].[chunkhash].js',
         }
     }
   }
