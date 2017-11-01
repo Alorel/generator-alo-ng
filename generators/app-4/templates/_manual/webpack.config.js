@@ -168,18 +168,18 @@ class WebpackFactory {
           path: path.join(__dirname, 'dist', 'umd'),
           filename: '[name].js',
           libraryTarget: 'umd',
-          library: 'MyPkg'
+          library: '<%= GLOBAL_LIB_NAME %>'
         };
       case MODE.DEMO_JIT:
         return {
           path: path.join(__dirname, '.demo'),
           filename: '[name].js',
-        }
+        };
       case MODE.DEMO_AOT:
         return {
           path: path.join(__dirname, '.demo'),
           filename: '[name].[chunkhash].js',
-        }
+        };
     }
   }
 
