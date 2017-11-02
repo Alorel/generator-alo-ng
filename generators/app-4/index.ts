@@ -3,6 +3,7 @@ import {getPrompts} from "./prompts";
 import {ConfigKey} from "../../util/ConfigKey";
 import {crossSpawn} from "../../util/CrossSpawn";
 import {mkdirSync, writeFileSync} from "fs";
+import {forEach} from 'lodash';
 
 class Ng4LibGenerator extends Generator {
 
@@ -11,6 +12,11 @@ class Ng4LibGenerator extends Generator {
   async prompting() {
     this.promptAnswers = await this.prompt(await getPrompts(this));
 
+    forEach(this.promptAnswers, (v: any, k: string) => {
+      this.config.set(k, v);
+    });
+    this.config.save();
+
     this.composeWith(require.resolve('generator-license'), {
       name: this.promptAnswers[ConfigKey.packageAuthorName],
       email: this.promptAnswers[ConfigKey.packageAuthorEmail],
@@ -18,10 +24,6 @@ class Ng4LibGenerator extends Generator {
       defaultLicense: 'MIT',
       licensePrompt: "What license do you want to use?"
     });
-  }
-
-  configuring() {
-    this.config.defaults(this.promptAnswers);
   }
 
   get _packageAuthor(): { name: string, url: string, email: string } {
