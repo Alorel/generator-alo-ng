@@ -5,8 +5,8 @@ ignore:
   'npm:shelljs:20140723':
     - yeoman-generator > shelljs:
         reason: None given
-        expires: '2017-12-02T09:21:37.961Z'
+        expires: '2117-12-02T09:21:37.961Z'
     - generator-license > yeoman-generator > shelljs:
         reason: None given
-        expires: '2017-12-02T09:21:37.961Z'
+        expires: '2117-12-02T09:21:37.961Z'
 patch: {}
