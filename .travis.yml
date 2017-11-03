@@ -7,8 +7,6 @@ cache:
     - node_modules
     - ".travis-tmp/node_modules"
 
-before_install: npm install -g node-gyp
-
 script:
   - npm test
   - mkdir -p .travis-tmp
