@@ -22,6 +22,7 @@ before_deploy: npm run build:prod
 before_cache:
   - rm -rf node_modules/.cache
   - rm -rf .travis-tmp/node_modules/.cache
+  - rm -rf .travis-tmp/node_modules/puppeteer
 
 deploy:
   - provider: npm
