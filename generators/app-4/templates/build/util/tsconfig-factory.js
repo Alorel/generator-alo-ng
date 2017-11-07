@@ -31,11 +31,11 @@ class TsConfigFactory {
       case MODE.DIST_ESM5:
         return ['./.tmp/src-inlined-templates/index.ts'];
       case MODE.DEMO_JIT:
-        return ['./src/demo./demo.ts'];
+        return ['./src/demo/demo.ts'];
       case MODE.DEMO_PRE_AOT:
         return ['.tmp/pre-aot/demo/demo.ts'];
       case MODE.DEMO_AOT:
-        return ['./src/demo./demo.aot.ts'];
+        return ['./src/demo/demo.aot.ts'];
     }
   }
 
@@ -63,7 +63,6 @@ class TsConfigFactory {
   get noEmit() {
     return [
       MODE.DIST_UMD,
-      MODE.DEMO_PRE_AOT,
       MODE.DEMO_AOT,
       MODE.DEMO_JIT,
       MODE.TEST
