@@ -1,12 +1,12 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.8.0
+version: v1.7.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:shelljs:20140723':
     - yeoman-generator > shelljs:
-        reason: None given
-        expires: '2117-12-02T09:21:37.961Z'
+        reason: No remediation available
+        expires: '2017-12-08T20:38:55.943Z'
     - generator-license > yeoman-generator > shelljs:
-        reason: None given
-        expires: '2117-12-02T09:21:37.961Z'
+        reason: No remediation
+        expires: '2017-12-08T20:38:55.943Z'
 patch: {}
