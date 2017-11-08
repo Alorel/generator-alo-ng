@@ -2,10 +2,17 @@ sudo: false
 language: node_js
 node_js: 9
 
+env:
+  global:
+    - secure: X3Op4kF+X34JVZldxKORn1xctJ7gmc5/AReKmq1+rYcydaeUIyZjm5x1daeWoqTDuflc8/+pNhCFBM6poDyCtmbVy8fNs+zcX0kg0aQhbMGcJQYh9PHww1ek1HHKiPE0P2Ll05eKQS2fxtI9U78Jd+76+SI5k40m9YzqPB2mGWsmcuPKxckObRfvhkDzYR7fzaE/6Ur6zv9BhXTMW5lDFvtkmDrhvInfj5UmzpAzinrf75XJjr528mqdC2ct0y+GQkCO4fa447Gj1n5ohr20eQrUU1V0nvb3gbkcnIMhwq5EOSCdotL3tFGBpgtNp/VQ2BLZXWodwXjxsKVurtWFAkToLiOsmDnG0ylmwgaubhyd8wqH4fOom325LOiqhfx2bKiy//MGK6eiBrQu4EHcZvRbXfqJsQvTqMo39hBRsVKyI2VbdXae53GaN3JNRzx9sQLOjlkNSqQ7IXE6yJKG0hmoXMSRrWmnZsqoOUiKSQ9RhYLWMatSh+vLSGm9ysgO1PBIUYa7KnsD2krCUeWMCeL95n3b7kTFlQBDawnjt4nK+/9S1MWUp3d57gRxqvURoPa3jR1jpkENeLfw1mKFPbUMDoXgsylHE3nmPihk6LAqckvAbvKUr65XsAJVfVB+gky0FzAKEq8oqhM3zxlwSAgJCwNKtibZc764OIzaG9Y=
+
 cache:
   directories:
     - node_modules
     - ".travis-tmp/node_modules"
+
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
 
 script:
   - npm test

@@ -26,8 +26,7 @@
     "watch": "tsc --watch",
     "pretest": "npm run clean && rimraf .nyc_output coverage && tsc",
     "test": "nyc ava --verbose --color test/tests/**/*.js test/tests/*.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "snyk protect"
   },
   "keywords": [
     "yeoman-generator",
@@ -55,8 +54,7 @@
     "generator-license": "^5.2",
     "lodash": "^4.17",
     "yeoman-environment": "^2.0",
-    "yeoman-generator": "^2.0",
-    "snyk": "^1.47.0"
+    "yeoman-generator": "^2.0"
   },
   "devDependencies": {
     "@types/glob": "^5.0.33",
@@ -68,8 +66,10 @@
     "ava": "^0.23.0",
     "coveralls": "^3.0.0",
     "glob": "^7.1.2",
+    "greenkeeper-lockfile": "^1.12.0",
     "nyc": "^11.2.1",
     "rimraf": "^2.6.2",
+    "snyk": "^1.47.0",
     "tmp": "0.0.33",
     "typescript": "^2.5.3",
     "yeoman-test": "^1.7.0"
