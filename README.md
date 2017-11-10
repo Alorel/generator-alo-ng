@@ -1,5 +1,7 @@
 # Angular library generator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/generator-alo-ng.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/Alorel/generator-alo-ng.png?branch=master)](https://travis-ci.org/Alorel/generator-alo-ng)
 [![Coverage Status](https://coveralls.io/repos/github/Alorel/generator-alo-ng/badge.svg?branch=master)](https://coveralls.io/github/Alorel/generator-alo-ng?branch=master)
 [![Dependency status](https://david-dm.org/alorel/generator-alo-ng.svg)](https://david-dm.org/alorel/generator-alo-ng#info=dependencies&view=list)
