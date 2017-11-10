@@ -2,11 +2,12 @@ sudo: false
 language: node_js
 
 generator: &generator
-  stage: generator
+  stage: test generator
+  env:
+    - STAGE=generator
   cache:
     directories:
       - node_modules
-  node_js: $NODE_VERSION
   before_script: greenkeeper-lockfile-update
   before_cache: rm -rf node_modules/.cache
   script:
@@ -26,30 +27,27 @@ env:
     - secure: wAF0/E+fnikLd4ReLypMUOpGMv0dM4zC4ydEugCNCOXuHaTLhCMmkAgcE8OgFdaG8PQNwvdFpQezoSN0Zs3TgFlaX/WK/qK+lhKZU/thOmhhfBxTVnfhty4fQ8H1yXRW+SQumRaY1NQ6cWvJJMzZKRESbEGhuBqpqBrddDvsukfh9fUGHdMI63P4lHbOPVPQcedpJDsJFR4w1TLKENzyRATYwiNMWRj+DxM2kNryhYoJ4WxUFVCh7zdQdtv8IKY3GpenvmWCkrSvzHQKu3SuC2Gca49WFN1J1wpdfy2+mjDutAVHMmTW3w1pnnwllWwTlEU6AGVBrMbQwpLe/TvcWx7kWWybKri1cQ5KPbOnVJ+DNvdVEcgGpg2PA0eWn7uayNT+Y6vadl/oeqs4UBHUXL8aunWve5GNGJhkCtI7s71SzMnQbYNIo/jKqVfyMjn0DDs7P67lHJX09jQsmJIhCGSTVNP11qoPdEx8kGi8mlMBxrvJh3zw2aplEjUaom3exq9zmXuq8C0B8RyhYrkF2YbA/iUErj3qSByNLRLL0FU2FCBuoqt7dfuoj3o+g9wuBLMYjuutyDvb2iwsFqeS7ao2kMrboalsETMiEKE/GguB5saN/dZaMyi3qJ3zY3Hkq0vp8m8NM95aB7Lri+/IgKxs71w7f0VcvZIvBc9MPt0=
 
 stages:
-  - generator
-  - generated
+  - test generator
+  - test generated
   - name: deploy
     if: tag IS present
 
 jobs:
   include:
     - <<: *generator
-      env:
-        - NODE_VERSION=9
+      node_js: 9
       after_script:
         - greenkeeper-lockfile-upload
         - snyk monitor
     - <<: *generator
-      env:
-        - NODE_VERSION=8
+      node_js: 8
     - <<: *generator
-      env:
-        - NODE_VERSION=7
+      node_js: 7
 
-    - stage: generated
-      node_js: *latest_node_version_used
+    - stage: test generated
+      node_js: 9
       env:
-        - GENERATING=1
+        - STAGE=generated
       cache:
         directories:
           - node_modules
@@ -68,7 +66,7 @@ jobs:
     - stage: deploy
       node_js: *latest_node_version_used
       env:
-        - DEPLOYING=1
+        - STAGE=deploy
       cache:
         directories:
           - node_modules
