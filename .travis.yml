@@ -1,11 +1,6 @@
 sudo: false
 language: node_js
 
-node_js:
-  - 9
-  - 8
-  - 7
-
 env:
   global:
     - MONITORED_VERSION=9
