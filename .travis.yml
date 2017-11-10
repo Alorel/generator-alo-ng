@@ -1,46 +1,41 @@
 sudo: false
 language: node_js
 node_js:
-  - 9
-  - 8
-  - 7
-
+- 9
+- 8
+- 7
 env:
   global:
-    - secure: X3Op4kF+X34JVZldxKORn1xctJ7gmc5/AReKmq1+rYcydaeUIyZjm5x1daeWoqTDuflc8/+pNhCFBM6poDyCtmbVy8fNs+zcX0kg0aQhbMGcJQYh9PHww1ek1HHKiPE0P2Ll05eKQS2fxtI9U78Jd+76+SI5k40m9YzqPB2mGWsmcuPKxckObRfvhkDzYR7fzaE/6Ur6zv9BhXTMW5lDFvtkmDrhvInfj5UmzpAzinrf75XJjr528mqdC2ct0y+GQkCO4fa447Gj1n5ohr20eQrUU1V0nvb3gbkcnIMhwq5EOSCdotL3tFGBpgtNp/VQ2BLZXWodwXjxsKVurtWFAkToLiOsmDnG0ylmwgaubhyd8wqH4fOom325LOiqhfx2bKiy//MGK6eiBrQu4EHcZvRbXfqJsQvTqMo39hBRsVKyI2VbdXae53GaN3JNRzx9sQLOjlkNSqQ7IXE6yJKG0hmoXMSRrWmnZsqoOUiKSQ9RhYLWMatSh+vLSGm9ysgO1PBIUYa7KnsD2krCUeWMCeL95n3b7kTFlQBDawnjt4nK+/9S1MWUp3d57gRxqvURoPa3jR1jpkENeLfw1mKFPbUMDoXgsylHE3nmPihk6LAqckvAbvKUr65XsAJVfVB+gky0FzAKEq8oqhM3zxlwSAgJCwNKtibZc764OIzaG9Y=
-
+  # GH
+  - secure: X3Op4kF+X34JVZldxKORn1xctJ7gmc5/AReKmq1+rYcydaeUIyZjm5x1daeWoqTDuflc8/+pNhCFBM6poDyCtmbVy8fNs+zcX0kg0aQhbMGcJQYh9PHww1ek1HHKiPE0P2Ll05eKQS2fxtI9U78Jd+76+SI5k40m9YzqPB2mGWsmcuPKxckObRfvhkDzYR7fzaE/6Ur6zv9BhXTMW5lDFvtkmDrhvInfj5UmzpAzinrf75XJjr528mqdC2ct0y+GQkCO4fa447Gj1n5ohr20eQrUU1V0nvb3gbkcnIMhwq5EOSCdotL3tFGBpgtNp/VQ2BLZXWodwXjxsKVurtWFAkToLiOsmDnG0ylmwgaubhyd8wqH4fOom325LOiqhfx2bKiy//MGK6eiBrQu4EHcZvRbXfqJsQvTqMo39hBRsVKyI2VbdXae53GaN3JNRzx9sQLOjlkNSqQ7IXE6yJKG0hmoXMSRrWmnZsqoOUiKSQ9RhYLWMatSh+vLSGm9ysgO1PBIUYa7KnsD2krCUeWMCeL95n3b7kTFlQBDawnjt4nK+/9S1MWUp3d57gRxqvURoPa3jR1jpkENeLfw1mKFPbUMDoXgsylHE3nmPihk6LAqckvAbvKUr65XsAJVfVB+gky0FzAKEq8oqhM3zxlwSAgJCwNKtibZc764OIzaG9Y=
+  # Snyk
+  - secure: wAF0/E+fnikLd4ReLypMUOpGMv0dM4zC4ydEugCNCOXuHaTLhCMmkAgcE8OgFdaG8PQNwvdFpQezoSN0Zs3TgFlaX/WK/qK+lhKZU/thOmhhfBxTVnfhty4fQ8H1yXRW+SQumRaY1NQ6cWvJJMzZKRESbEGhuBqpqBrddDvsukfh9fUGHdMI63P4lHbOPVPQcedpJDsJFR4w1TLKENzyRATYwiNMWRj+DxM2kNryhYoJ4WxUFVCh7zdQdtv8IKY3GpenvmWCkrSvzHQKu3SuC2Gca49WFN1J1wpdfy2+mjDutAVHMmTW3w1pnnwllWwTlEU6AGVBrMbQwpLe/TvcWx7kWWybKri1cQ5KPbOnVJ+DNvdVEcgGpg2PA0eWn7uayNT+Y6vadl/oeqs4UBHUXL8aunWve5GNGJhkCtI7s71SzMnQbYNIo/jKqVfyMjn0DDs7P67lHJX09jQsmJIhCGSTVNP11qoPdEx8kGi8mlMBxrvJh3zw2aplEjUaom3exq9zmXuq8C0B8RyhYrkF2YbA/iUErj3qSByNLRLL0FU2FCBuoqt7dfuoj3o+g9wuBLMYjuutyDvb2iwsFqeS7ao2kMrboalsETMiEKE/GguB5saN/dZaMyi3qJ3zY3Hkq0vp8m8NM95aB7Lri+/IgKxs71w7f0VcvZIvBc9MPt0=
 cache:
   directories:
-    - node_modules
-    - ".travis-tmp/node_modules"
-
+  - node_modules
+  - ".travis-tmp/node_modules"
 before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
-
 script:
-  - npm test
-  - snyk test
-  - mkdir -p .travis-tmp
-  - bash -c "cd .travis-tmp && node ../test/util/install-app-4.js"
-  - bash -c "cd .travis-tmp && npm install"
-  - bash -c "cd .travis-tmp && npm run build:demo:aot"
-  - bash -c "cd .travis-tmp && npm test"
-
-after_success: "cat ./coverage/lcov.info | coveralls"
-
+- npm test
+- snyk test
+- mkdir -p .travis-tmp
+- bash -c "cd .travis-tmp && node ../test/util/install-app-4.js"
+- bash -c "cd .travis-tmp && npm install"
+- bash -c "cd .travis-tmp && npm run build:demo:aot"
+- bash -c "cd .travis-tmp && npm test"
+after_success: cat ./coverage/lcov.info | coveralls
 before_deploy: npm run build:prod
-
 before_cache:
-  - rm -rf node_modules/.cache
-  - rm -rf .travis-tmp/node_modules/.cache
-  - rm -rf .travis-tmp/node_modules/puppeteer
-
+- rm -rf node_modules/.cache
+- rm -rf .travis-tmp/node_modules/.cache
+- rm -rf .travis-tmp/node_modules/puppeteer
 deploy:
-  - provider: npm
-    skip_cleanup: true
-    email: a.molcanovas@gmail.com
-    on:
-      tags: true
-      node_js: 9
-    api_key:
-      secure: FHG0LjP6QIfQoxCKFiCV+sUjkHei5/IdpWN13TzM/QmWkB9MGNxkpRXGbjmPal/aGTRhdo3jhpRBrQZs3nm3l2WcVy/YwiTSjU3ryJYCxJHYve3xKQbfn/IBvj2dc19hlot/L5VHp/aJGJTWb7yEcBVKbRgpiOIOEFo6EMaIivwRI2Ev86hg7rSSz6PWvBCQFdOvt2uaTepI88dxAIcFpF0vrY9RpmbHaoYZrHwm0HZmlv61U0DtOkVA0aFTGyFeB2TCmDu3HGPgDfs3dtAl0F4d0HwmVbZebe4ke1sNF3N7ealhVs3i7zBqElkKaUkzid3wY53Rj0Pp0db4NMNe+TGRZ/Poj5oart20k1+xepRrI6Op/MjRz2LKHx/D99Yv1h5dE8umubnkzIsCB1T/ts6ZeHjZLVn9OJgIqMfxZq4PH8cYpdoKYkbSKjGGzhgGeQ4NH+1me/JTSR/IzRkS1oS3q3K0oIVoPWXS2wZZ52jfufIhK2so8t+vg9Ld7SvTb7wb5kKgrWFIy162y5Twa3nD/ElMa9CVIBG233fz7ZQe6b/bTcClXp5/CT2SDzmm1m1U8VQTq2pA5yo/BVb70SS7g5doDwLT/Nc9/+1Qs3bUkHAH3io+DfHVb5oQ8CjC3Xn6XQWoOMVAMBoE+n5o7NnhLT8i0wCVHgaCzfA7Uvg=
+- provider: npm
+  skip_cleanup: true
+  email: a.molcanovas@gmail.com
+  on:
+    tags: true
+    node_js: 9
+  api_key:
+    secure: FHG0LjP6QIfQoxCKFiCV+sUjkHei5/IdpWN13TzM/QmWkB9MGNxkpRXGbjmPal/aGTRhdo3jhpRBrQZs3nm3l2WcVy/YwiTSjU3ryJYCxJHYve3xKQbfn/IBvj2dc19hlot/L5VHp/aJGJTWb7yEcBVKbRgpiOIOEFo6EMaIivwRI2Ev86hg7rSSz6PWvBCQFdOvt2uaTepI88dxAIcFpF0vrY9RpmbHaoYZrHwm0HZmlv61U0DtOkVA0aFTGyFeB2TCmDu3HGPgDfs3dtAl0F4d0HwmVbZebe4ke1sNF3N7ealhVs3i7zBqElkKaUkzid3wY53Rj0Pp0db4NMNe+TGRZ/Poj5oart20k1+xepRrI6Op/MjRz2LKHx/D99Yv1h5dE8umubnkzIsCB1T/ts6ZeHjZLVn9OJgIqMfxZq4PH8cYpdoKYkbSKjGGzhgGeQ4NH+1me/JTSR/IzRkS1oS3q3K0oIVoPWXS2wZZ52jfufIhK2so8t+vg9Ld7SvTb7wb5kKgrWFIy162y5Twa3nD/ElMa9CVIBG233fz7ZQe6b/bTcClXp5/CT2SDzmm1m1U8VQTq2pA5yo/BVb70SS7g5doDwLT/Nc9/+1Qs3bUkHAH3io+DfHVb5oQ8CjC3Xn6XQWoOMVAMBoE+n5o7NnhLT8i0wCVHgaCzfA7Uvg=
