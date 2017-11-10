@@ -4,6 +4,9 @@ node_js:
   - 9
   - 8
   - 7
+
+before_install: echo $TRAVIS_NODE_VERSION
+
 env:
   global:
     # GH
