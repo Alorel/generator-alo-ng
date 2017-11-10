@@ -1,13 +1,14 @@
+import {Answers} from 'inquirer';
 import * as Generator from 'yeoman-generator';
-import {Answers} from "inquirer";
 
+// tslint:disable-next-line:no-magic-numbers
 const supportedVersions = [4];
 
 class AppGenerator extends Generator {
 
   private promptAnswers: Answers = {};
 
-  constructor(args: string | string[], options: {}) {
+  public constructor(args: string | string[], options: {}) {
     super(args, options);
 
     this.option('version', {
@@ -17,31 +18,34 @@ class AppGenerator extends Generator {
     });
   }
 
-  get _version(): number {
-    return parseInt(this.options['version'] || this.promptAnswers.version);
+  public get _version(): number {
+    // tslint:disable-next-line:no-magic-numbers
+    return parseInt(this.options['version'] || this.promptAnswers.version, 10);
   }
 
-  async prompting() {
+  public async prompting() {
     this.promptAnswers = await this.prompt({
-      type: 'list',
-      name: 'version',
-      message: "Which version of Angular do you want to use?",
-      when: () => !this._version,
       choices: [
         '4'
-      ]
+      ],
+      message: 'Which version of Angular do you want to use?',
+      name: 'version',
+      type: 'list',
+      when: () => !this._version
     });
 
     if (!this._version || isNaN(this._version) || !supportedVersions.includes(this._version)) {
-      throw new Error(`Unsupported Angular version: ${this._version}. Supported versions: ${supportedVersions.join(', ')}`);
+      throw new Error(
+        `Unsupported Angular version: ${this._version}. Supported versions: ${supportedVersions.join(', ')}`
+      );
     }
   }
 
-  end() {
+  public end() {
     this.composeWith(
       require.resolve('../app-4'),
       {}
-    )
+    );
   }
 }
 

@@ -1,4 +1,4 @@
-import {ConfigKey} from "../../util/ConfigKey";
+import {ConfigKey} from '../../util/ConfigKey';
 
 export const libs = [
   '@angular/animations',

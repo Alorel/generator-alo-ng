@@ -25,6 +25,7 @@ script:
   - bash -c "cd .travis-tmp && npm install"
   - bash -c "cd .travis-tmp && npm run build:demo:aot"
   - bash -c "cd .travis-tmp && npm test"
+  - npm run lint
   - snyk test
 after_success:
   - cat ./coverage/lcov.info | coveralls

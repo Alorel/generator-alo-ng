@@ -1,15 +1,15 @@
-import * as Generator from 'yeoman-generator';
-import {getPrompts} from "./prompts";
-import {ConfigKey} from "../../util/ConfigKey";
-import {crossSpawn} from "../../util/CrossSpawn";
-import {mkdirSync, writeFileSync} from "fs";
+import {mkdirSync, writeFileSync} from 'fs';
 import {forEach} from 'lodash';
+import * as Generator from 'yeoman-generator';
+import {ConfigKey} from '../../util/ConfigKey';
+import {crossSpawn} from '../../util/CrossSpawn';
+import {getPrompts} from './prompts';
 
 class Ng4LibGenerator extends Generator {
 
   private promptAnswers: any = {};
 
-  async prompting() {
+  public async prompting() {
     this.promptAnswers = await this.prompt(await getPrompts(this));
 
     forEach(this.promptAnswers, (v: any, k: string) => {
@@ -18,15 +18,15 @@ class Ng4LibGenerator extends Generator {
     this.config.save();
 
     this.composeWith(require.resolve('generator-license'), {
-      name: this.promptAnswers[ConfigKey.packageAuthorName],
-      email: this.promptAnswers[ConfigKey.packageAuthorEmail],
-      website: this.promptAnswers[ConfigKey.homepage],
       defaultLicense: 'MIT',
-      licensePrompt: "What license do you want to use?"
+      email: this.promptAnswers[ConfigKey.packageAuthorEmail],
+      licensePrompt: 'What license do you want to use?',
+      name: this.promptAnswers[ConfigKey.packageAuthorName],
+      website: this.promptAnswers[ConfigKey.homepage]
     });
   }
 
-  get _packageAuthor(): { name: string, url: string, email: string } {
+  public get _packageAuthor(): { name: string; url: string; email: string } {
     const name: string = this.promptAnswers[ConfigKey.packageAuthorName];
     const url: string = this.promptAnswers[ConfigKey.packageAuthorUrl];
     const email: string = this.promptAnswers[ConfigKey.packageAuthorEmail];
@@ -34,7 +34,7 @@ class Ng4LibGenerator extends Generator {
     return {name, url, email};
   }
 
-  get _packageJSON() {
+  public get _packageJSON() {
     const pkg = this.fs.readJSON(this.templatePath('_manual/package.json'));
 
     pkg.name = this.promptAnswers[ConfigKey.packageName];
@@ -85,11 +85,12 @@ class Ng4LibGenerator extends Generator {
     return pkg;
   }
 
-  async writing() {
+  public async writing() {
     this.fs.writeJSON(
       this.destinationPath('package.json'),
       this._packageJSON,
       null,
+      // tslint:disable-next-line:no-magic-numbers
       2
     );
 
@@ -142,7 +143,7 @@ class Ng4LibGenerator extends Generator {
     );
   }
 
-  async _setupGit() {
+  public async _setupGit() {
     if (this.promptAnswers[ConfigKey.usingGit]) {
       await crossSpawn('git', ['init'], {
         cwd: this.destinationRoot()
@@ -164,7 +165,7 @@ class Ng4LibGenerator extends Generator {
     }
   }
 
-  async install() {
+  public async install() {
     await this._setupGit();
 
     if (this.promptAnswers[ConfigKey.installDeps]) {

@@ -2,7 +2,8 @@
   "defaultSeverity": "error",
   "linterOptions": {
     "exclude": [
-      "**/node_modules/**/*"
+      "**/node_modules/**/*",
+      "generators/app-4/templates/**/*"
     ]
   },
   "rules": {

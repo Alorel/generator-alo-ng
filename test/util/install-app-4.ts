@@ -1,6 +1,6 @@
-import {instantiateApp4} from "./instantiate-generator";
 import * as yo from 'yeoman-test';
-import {get4appPrompts} from "./get4appPrompts";
+import {get4appPrompts} from './get4appPrompts';
+import {instantiateApp4} from './instantiate-generator';
 
 const app = instantiateApp4();
 

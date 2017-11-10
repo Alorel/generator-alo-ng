@@ -1,13 +1,14 @@
-import test from 'ava';
-import {instantiateApp} from "../util/instantiate-generator";
+import {test} from 'ava';
+import {instantiateApp} from '../util/instantiate-generator';
 
 import * as yo from 'yeoman-test';
-import AppGenerator = require("../../generators/app/index");
-import App4Generator = require("../../generators/app-4/index");
+import App4Generator = require('../../generators/app-4/index');
+import AppGenerator = require('../../generators/app/index');
 
+const version = 4;
 
 test('App can instantiate', t => {
-  t.true(instantiateApp() instanceof AppGenerator)
+  t.true(instantiateApp() instanceof AppGenerator);
 });
 
 test('Default version is NaN', t => {
@@ -15,28 +16,28 @@ test('Default version is NaN', t => {
 });
 
 test('Arged version (short)', t => {
-  t.is(instantiateApp({v: 4})._version, 4);
+  t.is(instantiateApp({v: version})._version, version);
 });
 
 test('Arged version (long)', t => {
-  t.is(instantiateApp({version: 4})._version, 4);
+  t.is(instantiateApp({version})._version, version);
 });
 
 test('Prompted version (valid)', async t => {
   const inst = instantiateApp();
   yo.mockPrompt(inst, {
-    'version': '4'
+    version: '4'
   });
 
   await inst.prompting();
 
-  t.is(inst._version, 4);
+  t.is(inst._version, version);
 });
 
 test('Prompted version (invalid)', async t => {
   const inst = instantiateApp();
   yo.mockPrompt(inst, {
-    'version': 'foo'
+    version: 'foo'
   });
 
   try {

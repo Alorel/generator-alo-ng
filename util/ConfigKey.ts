@@ -12,7 +12,7 @@ export enum ConfigKey {
   gitRepo = 'GIT_REPO',
   bugsUrl = 'BUGS_URL',
   homepage = 'PKG_HOMEPAGE',
-  installDeps = "INSTALL_DEPS",
+  installDeps = 'INSTALL_DEPS',
   libGlobalName = 'WEBPACK_LIB_NAME',
   extraLibs = 'PKG_EXTRA_LIBS',
   demoPort = 'demoPort'

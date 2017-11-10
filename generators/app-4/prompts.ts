@@ -1,18 +1,16 @@
-import {Answers, Question} from "inquirer";
-import {ConfigKey} from "../../util/ConfigKey";
+import {Answers, Question} from 'inquirer';
 import * as Generator from 'yeoman-generator';
+import {ConfigKey} from '../../util/ConfigKey';
 
 function notEmptyValidator(i: string): string | boolean {
   if (!i) {
-    return "This field is required";
+    return 'This field is required';
   }
 
   return true;
 }
 
-export type Prompt = Question & { save?: boolean };
-
-export async function getPrompts(gen: Generator): Promise<Prompt[]> {
+export async function getPrompts(gen: Generator): Promise<Question[]> {
   let ghName: string | undefined;
 
   try {
@@ -21,35 +19,29 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
     ghName = undefined;
   }
 
-  return <any>Object.freeze(<Prompt[]>[
+  return <any>Object.freeze(<Question[]>[
     {
-      name: ConfigKey.packageName,
-      message: "What's your package name?",
-      validate: notEmptyValidator,
-      save: true,
-      'default': () => {
+      default: () => {
         return gen.config.get(ConfigKey.packageName) ||
           gen.determineAppname() ||
           undefined;
-      }
-    },
-    {
-      name: ConfigKey.packageDescription,
-      save: true,
-      message: "Input your package description",
+      },
+      message: "What's your package name?",
+      name: ConfigKey.packageName,
       validate: notEmptyValidator
     },
     {
-      name: ConfigKey.packagePrivate,
-      type: 'confirm',
-      save: true,
-      message: "Will this package be private?"
+      message: 'Input your package description',
+      name: ConfigKey.packageDescription,
+      validate: notEmptyValidator
     },
     {
-      name: ConfigKey.packageAuthorName,
-      message: "What's the package author's name?",
-      save: true,
-      'default': () => {
+      message: 'Will this package be private?',
+      name: ConfigKey.packagePrivate,
+      type: 'confirm'
+    },
+    {
+      default: () => {
         if (gen.config.get(ConfigKey.packageAuthorName)) {
           return gen.config.get(ConfigKey.packageAuthorName);
         } else if (gen.user.git.name()) {
@@ -57,63 +49,57 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
         } else if (ghName) {
           return ghName;
         }
-      }
+      },
+      message: "What's the package author's name?",
+      name: ConfigKey.packageAuthorName
     },
     {
-      name: ConfigKey.packageAuthorEmail,
-      save: true,
-      message: "What's the package author's email?",
-      'default': () => {
+      default: () => {
         if (gen.config.get(ConfigKey.packageAuthorEmail)) {
           return gen.config.get(ConfigKey.packageAuthorEmail);
         } else if (gen.user.git.email()) {
           return gen.user.git.email();
         }
-      }
+      },
+      message: "What's the package author's email?",
+      name: ConfigKey.packageAuthorEmail
     },
     {
+      message: 'Will you be using git?',
       name: ConfigKey.usingGit,
-      save: true,
-      message: "Will you be using git?",
       type: 'confirm',
     },
     {
+      message: 'Will you be using GitHub?',
       name: ConfigKey.githubEnabled,
-      save: true,
-      message: "Will you be using GitHub?",
       type: 'confirm',
       when: (a: Answers): boolean => !!a[ConfigKey.usingGit]
     },
     {
-      name: ConfigKey.githubUsername,
-      save: true,
-      message: "What's your github username?",
-      when: (a: Answers): boolean => !!a[ConfigKey.githubEnabled],
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         return gen.config.get(ConfigKey.githubUsername) ||
           ghName ||
           a[ConfigKey.packageAuthorName] ||
           gen.user.git.name() ||
           undefined;
-      }
+      },
+      message: "What's your github username?",
+      name: ConfigKey.githubUsername,
+      when: (a: Answers): boolean => !!a[ConfigKey.githubEnabled]
     },
     {
-      name: ConfigKey.githubRepo,
-      save: true,
-      message: "What's the github repo name for this project?",
-      when: (a: Answers): boolean => !!a[ConfigKey.githubEnabled],
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         return gen.config.get(ConfigKey.githubRepo) ||
           a[ConfigKey.packageName] ||
           gen.determineAppname() ||
           undefined;
-      }
+      },
+      message: "What's the github repo name for this project?",
+      name: ConfigKey.githubRepo,
+      when: (a: Answers): boolean => !!a[ConfigKey.githubEnabled],
     },
     {
-      name: ConfigKey.packageAuthorUrl,
-      save: true,
-      message: "What's the package author's URL?",
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         if (gen.config.get(ConfigKey.packageAuthorUrl)) {
           return gen.config.get(ConfigKey.packageAuthorUrl);
         }
@@ -121,40 +107,36 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
         if (a[ConfigKey.githubUsername]) {
           return `https://${a[ConfigKey.githubUsername].toLowerCase()}.github.io`;
         }
-      }
+      },
+      message: "What's the package author's URL?",
+      name: ConfigKey.packageAuthorUrl
     },
     {
-      name: ConfigKey.bugsUrl,
-      save: true,
-      message: "What's the package bugs URL?",
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         const u: string = a[ConfigKey.githubUsername];
         const r: string = a[ConfigKey.githubRepo];
 
         if (u && r) {
           return `https://github.com/${u}/${r}/issues`;
         }
-      }
+      },
+      message: "What's the package bugs URL?",
+      name: ConfigKey.bugsUrl
     },
     {
-      name: ConfigKey.homepage,
-      save: true,
-      message: "What's the package's homepage?",
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         const u: string = a[ConfigKey.githubUsername];
         const r: string = a[ConfigKey.githubRepo];
 
         if (u && r) {
           return `https://github.com/${u}/${r}`;
         }
-      }
+      },
+      message: "What's the package's homepage?",
+      name: ConfigKey.homepage
     },
     {
-      name: ConfigKey.gitRepo,
-      save: true,
-      message: "What's the git repo URL of this package?",
-      when: (a: Answers): boolean => !!a[ConfigKey.usingGit],
-      'default': (a: Answers) => {
+      default: (a: Answers) => {
         const u: string = a[ConfigKey.githubUsername];
         const r: string = a[ConfigKey.githubRepo];
 
@@ -162,6 +144,9 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
           return `https://github.com/${u}/${r}.git`;
         }
       },
+      message: "What's the git repo URL of this package?",
+      name: ConfigKey.gitRepo,
+      when: (a: Answers): boolean => !!a[ConfigKey.usingGit],
       validate(i: string): boolean | string {
         const lc = i.toLowerCase();
 
@@ -170,46 +155,45 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
         } else if (!lc.startsWith('http') && !lc.startsWith('ftp')) {
           return 'Must start with "http" or "ftp"';
         }
+
         return true;
       }
     },
     {
-      name: ConfigKey.demoPort,
-      save: true,
+      default: () => gen.config.get(ConfigKey.demoPort) || '1111',
       message: "What's the port your local demo server will run on?",
-      'default': () => gen.config.get(ConfigKey.demoPort) || '1111',
+      name: ConfigKey.demoPort,
       validate(i: string): boolean | string {
         if (!/^[\d]{1,5}$/.test(i)) {
-          return "Must be numeric";
+          return 'Must be numeric';
         } else {
-          const n = parseInt(i, 10);
+          const radix = 1;
+          const limit = 65535;
+
+          const n = parseInt(i, radix);
 
           if (n < 1) {
-            return "Must be >= 1";
-          } else if (n > 65535) {
-            return "Must be <= 65535";
+            return 'Must be >= 1';
+          } else if (n > limit) {
+            return `Must be <= ${limit}`;
           }
-        }
-        return true;
-      }
-    },
-    {
-      name: ConfigKey.libGlobalName,
-      save: true,
-      message: "What's the UMD global name of your package?",
-      validate(i: string): boolean | string {
-        if (!i) {
-          return "This field is required";
         }
 
         return true;
       }
     },
     {
-      type: 'checkbox',
-      name: ConfigKey.extraLibs,
-      save: true,
-      message: 'Do you want to have any of these additional libraries as a peer dependency?',
+      message: "What's the UMD global name of your package?",
+      name: ConfigKey.libGlobalName,
+      validate(i: string): boolean | string {
+        if (!i) {
+          return 'This field is required';
+        }
+
+        return true;
+      }
+    },
+    {
       choices: [
         '@angular/animations',
         '@angular/cdk',
@@ -220,13 +204,15 @@ export async function getPrompts(gen: Generator): Promise<Prompt[]> {
         '@ngrx/core',
         '@ngrx/effects',
         '@ngrx/store'
-      ]
+      ],
+      message: 'Do you want to have any of these additional libraries as a peer dependency?',
+      name: ConfigKey.extraLibs,
+      type: 'checkbox'
     },
     {
-      type: 'confirm',
+      message: 'Would you like to install project dependencies?',
       name: ConfigKey.installDeps,
-      save: true,
-      message: "Would you like to install project dependencies?"
+      type: 'confirm'
     }
   ]);
 }

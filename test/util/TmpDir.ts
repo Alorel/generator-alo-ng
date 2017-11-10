@@ -1,4 +1,4 @@
 export interface TmpDir {
-  clean: Function,
-  dir: string
+  clean: Function;
+  dir: string;
 }
