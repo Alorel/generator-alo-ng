@@ -1,6 +1,23 @@
 sudo: false
 language: node_js
 
+generator: &generator
+  stage: generator
+  cache:
+    directories:
+      - node_modules
+  node_js: $NODE_VERSION
+  before_script: greenkeeper-lockfile-update
+  before_cache: rm -rf node_modules/.cache
+  script:
+    - npm test
+    - npm run lint
+    - snyk test
+  after_success:
+    - cat ./coverage/lcov.info | coveralls
+
+latest_node_version_used: &latest_node_version_used 9
+
 env:
   global:
     # GH
@@ -14,34 +31,25 @@ stages:
   - name: deploy
     if: tag IS present
 
-default: &generator
-  stage: generator
-  cache:
-    directories:
-      - node_modules
-  before_script: greenkeeper-lockfile-update
-  before_cache: rm -rf node_modules/.cache
-  script:
-    - npm test
-    - npm run lint
-    - snyk test
-  after_success:
-    - cat ./coverage/lcov.info | coveralls
-
 jobs:
   include:
     - <<: *generator
-      node_js: 9
+      env:
+        - NODE_VERSION=9
       after_script:
         - greenkeeper-lockfile-upload
         - snyk monitor
     - <<: *generator
-      node_js: 8
+      env:
+        - NODE_VERSION=8
     - <<: *generator
-      node_js: 7
+      env:
+        - NODE_VERSION=7
 
     - stage: generated
-      node_js: 9
+      node_js: *latest_node_version_used
+      env:
+        - GENERATING=1
       cache:
         directories:
           - node_modules
@@ -58,13 +66,14 @@ jobs:
       before_cache: rm -rf node_modules/.cache .travis-tmp/node_modules/.cache .travis-tmp/node_modules/puppeteer
 
     - stage: deploy
-      node_js: 9
+      node_js: *latest_node_version_used
+      env:
+        - DEPLOYING=1
       cache:
         directories:
           - node_modules
       before_cache: rm -rf node_modules/.cache
-      script: skip
-      before_deploy: npm run build:prod
+      script: npm run build:prod
       deploy:
         - provider: npm
           skip_cleanup: true
