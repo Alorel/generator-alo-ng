@@ -15,7 +15,9 @@ cache:
     - node_modules
     - ".travis-tmp/node_modules"
 before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
+after_script:
+  - greenkeeper-lockfile-upload
+  - snyk monitor
 script:
   - npm test
   - mkdir -p .travis-tmp
@@ -26,7 +28,6 @@ script:
   - snyk test
 after_success:
   - cat ./coverage/lcov.info | coveralls
-  - snyk monitor
 before_deploy: npm run build:prod
 before_cache:
   - rm -rf node_modules/.cache
