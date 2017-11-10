@@ -14,28 +14,31 @@ stages:
   - name: deploy
     if: tag IS present
 
+default: &generator
+  stage: generator
+  cache:
+    directories:
+      - node_modules
+  before_script: greenkeeper-lockfile-update
+  before_cache: rm -rf node_modules/.cache
+  script:
+    - npm test
+    - npm run lint
+    - snyk test
+  after_success:
+    - cat ./coverage/lcov.info | coveralls
+
 jobs:
   include:
-    - stage: generator
-      env:
-        - NODE_VER=9
-        - NODE_VER=8
-        - NODE_VER=7
-      node_js: $NODE_VER
-      cache:
-        directories:
-          - node_modules
-      before_script: greenkeeper-lockfile-update
-      before_cache: rm -rf node_modules/.cache
-      script:
-        - npm test
-        - npm run lint
-        - snyk test
+    - <<: *generator
+      node_js: 9
       after_script:
-        - if [ "$NODE_VER" = "9" ]; then greenkeeper-lockfile-upload; fi;
-        - if [ "$NODE_VER" = "9" ]; then snyk monitor; fi;
-      after_success:
-        - cat ./coverage/lcov.info | coveralls
+        - greenkeeper-lockfile-upload
+        - snyk monitor
+    - <<: *generator
+      node_js: 8
+    - <<: *generator
+      node_js: 7
 
     - stage: generated
       node_js: 9
