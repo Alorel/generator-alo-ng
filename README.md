@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Alorel/generator-alo-ng/badge.svg?branch=master)](https://coveralls.io/github/Alorel/generator-alo-ng?branch=master)
 [![Dependency status](https://david-dm.org/alorel/generator-alo-ng.svg)](https://david-dm.org/alorel/generator-alo-ng#info=dependencies&view=list)
 [![Dev dependency status](https://david-dm.org/alorel/generator-alo-ng/dev-status.svg)](https://david-dm.org/alorel/generator-alo-ng#info=devDependencies&view=list)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/generator-alo-ng.svg)](https://greenkeeper.io/)
 
 [![NPM](https://nodei.co/npm/generator-alo-ng.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/generator-alo-ng)
 
@@ -11,7 +12,7 @@ A Yeoman generator for AOT-compatible Angular 4 libraries in UMD, ESM5 and ESM20
 
 # Requirements
 
-- Node >= 8.0
+- Node >= 7.6
 
 # Installation
 ```sh
