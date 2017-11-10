@@ -4,9 +4,9 @@ version: v1.7.1
 ignore:
   'npm:shelljs:20140723':
     - yeoman-generator > shelljs:
-        reason: No remediation available
-        expires: '2017-12-08T20:38:55.943Z'
+        reason: no fix
+        expires: '2057-12-10T00:47:10.786Z'
     - generator-license > yeoman-generator > shelljs:
-        reason: No remediation
-        expires: '2017-12-08T20:38:55.943Z'
+        reason: no fix
+        expires: '2057-12-10T00:47:10.786Z'
 patch: {}

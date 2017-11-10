@@ -26,6 +26,7 @@
     "watch": "tsc --watch",
     "pretest": "npm run clean && rimraf .nyc_output coverage && tsc",
     "test": "nyc ava --verbose --color test/tests/**/*.js test/tests/*.js",
+    "snyk:wizard": "snyk wizard --dev",
     "prepare": "snyk protect"
   },
   "keywords": [
@@ -58,11 +59,11 @@
   },
   "devDependencies": {
     "@types/glob": "^5.0.33",
-    "@types/lodash": "^4.14.80",
+    "@types/lodash": "^4.14.84",
     "@types/node": "^8.0.47",
     "@types/tmp": "0.0.33",
     "@types/yeoman-generator": "^2.0.0",
-    "@types/yeoman-test": "^1.7.2",
+    "@types/yeoman-test": "^1.7.3",
     "ava": "^0.23.0",
     "coveralls": "^3.0.0",
     "glob": "^7.1.2",
