@@ -4,7 +4,7 @@ language: node_js
 generator: &generator
   stage: test generator
   env:
-    - STAGE=generator
+    - CACHE_KEY=root-only
   cache:
     directories:
       - node_modules
@@ -47,7 +47,7 @@ jobs:
     - stage: test generated
       node_js: 9
       env:
-        - STAGE=generated
+        - CACHE_KEY=generated
       cache:
         directories:
           - node_modules
@@ -66,7 +66,7 @@ jobs:
     - stage: deploy
       node_js: *latest_node_version_used
       env:
-        - STAGE=deploy
+        - CACHE_KEY=root-only
       cache:
         directories:
           - node_modules
