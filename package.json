@@ -27,7 +27,9 @@
     "pretest": "npm run clean && rimraf .nyc_output coverage && tsc",
     "test": "nyc ava --verbose --color test/tests/**/*.js test/tests/*.js",
     "snyk:wizard": "snyk wizard --dev",
-    "prepare": "snyk protect"
+    "prepare": "snyk protect",
+    "lint": "tslint -p . -s node_modules/custom-tslint-formatters/formatters -t grouped '**/*.ts'",
+    "lint:fix": "tslint -p . --fix -s node_modules/custom-tslint-formatters/formatters -t grouped '**/*.ts'"
   },
   "keywords": [
     "yeoman-generator",
@@ -66,12 +68,15 @@
     "@types/yeoman-test": "^1.7.3",
     "ava": "^0.23.0",
     "coveralls": "^3.0.0",
+    "custom-tslint-formatters": "^2.1.1",
     "glob": "^7.1.2",
     "greenkeeper-lockfile": "^1.12.0",
+    "husky": "^0.14.3",
     "nyc": "^11.2.1",
     "rimraf": "^2.6.2",
     "snyk": "^1.47.0",
     "tmp": "0.0.33",
+    "tslint": "^5.8.0",
     "typescript": "^2.5.3",
     "yeoman-test": "^1.7.0"
   },
