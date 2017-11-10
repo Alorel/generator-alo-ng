@@ -18,10 +18,12 @@ stages:
 jobs:
   include:
     - stage: test
-      node_js:
-        - 9
-        - 8
-        - 7
+      env:
+        matrix:
+          - NODE_VER=9
+            NODE_VER=8
+            NODE_VER=7
+      node_js: $NODE_VER
       cache:
         directories:
           - node_modules
