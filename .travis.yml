@@ -17,7 +17,7 @@ cache:
 before_script: greenkeeper-lockfile-update
 after_script:
   - greenkeeper-lockfile-upload
-  - snyk monitor
+  - if [ "$TRAVIS_NODE_VERSION" = "9."* ]; then snyk monitor; fi;
 script:
   - npm test
   - mkdir -p .travis-tmp
