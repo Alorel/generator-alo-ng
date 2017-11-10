@@ -10,7 +10,7 @@ export function crossSpawn(command: string, args: string[] = [], options: SpawnO
     xSpawn(command, args, merge({
       cwd: process.cwd(),
       stdio: 'inherit'
-    }, options))
+    },                          options))
       .once('error', err => {
         errored = true;
         reject(err);

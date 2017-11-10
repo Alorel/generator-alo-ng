@@ -20,7 +20,7 @@ test.before.cb.serial('Creating temp dir', t => {
   tmp.dir({
     discardDescriptor: true,
     unsafeCleanup: true
-  }, (err: any, dir: string, clean: Function) => {
+  },      (err: any, dir: string, clean: Function) => {
     if (err) {
       t.fail(err);
     } else {

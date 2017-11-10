@@ -20,7 +20,7 @@ function instantiateGenerator<T extends Generator>(constructor: any,
   return new constructor([], Object.assign({
     env,
     resolved
-  }, options || {}));
+  },                                       options || {}));
 }
 
 export function instantiateApp(options?: any): AppGenerator {

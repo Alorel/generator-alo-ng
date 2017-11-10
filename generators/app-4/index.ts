@@ -158,7 +158,7 @@ class Ng4LibGenerator extends Generator {
           'add',
           'origin',
           this.promptAnswers[ConfigKey.gitRepo]
-        ], {
+        ],               {
           cwd: this.destinationRoot()
         });
       }
