@@ -41,7 +41,7 @@ jobs:
         - snyk monitor --dev
 
     - stage: test generator
-      node_js: &latest_node_version_used
+      node_js: *latest_node_version_used
       env:
         - CACHE_KEY=generated
       cache:
