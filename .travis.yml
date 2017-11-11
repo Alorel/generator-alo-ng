@@ -13,7 +13,7 @@ generator: &generator
   script:
     - npm test
     - npm run lint
-    - snyk test
+    - snyk test --dev
   after_success:
     - cat ./coverage/lcov.info | coveralls
 
@@ -38,10 +38,10 @@ jobs:
       node_js: 9
       after_script:
         - greenkeeper-lockfile-upload
-        - snyk monitor
+        - snyk monitor --dev
 
     - stage: test generator
-      node_js: 9
+      node_js: &latest_node_version_used
       env:
         - CACHE_KEY=generated
       cache:
