@@ -28,7 +28,6 @@ env:
 
 stages:
   - test generator
-  - test generated
   - name: deploy
     if: tag IS present
 
