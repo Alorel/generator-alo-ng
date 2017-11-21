@@ -13,7 +13,7 @@ generator: &generator
   script:
     - npm test
     - npm run lint
-    - snyk test --dev
+    - if [ $SNYK_TOKEN ]; then snyk test --dev; fi;
   after_success:
     - cat ./coverage/lcov.info | coveralls
 
@@ -36,9 +36,8 @@ jobs:
     - <<: *generator
       node_js: 9
       after_script:
-        - greenkeeper-lockfile-upload
-        - snyk monitor --dev
-
+        - if [ $GH_TOKEN ]; then greenkeeper-lockfile-upload; fi;
+        - if [ $SNYK_TOKEN ]; then snyk monitor --dev; fi;
     - stage: test generator
       node_js: *latest_node_version_used
       env:
@@ -74,7 +73,7 @@ jobs:
           on:
             tags: true
           api_key:
-            secure: FHG0LjP6QIfQoxCKFiCV+sUjkHei5/IdpWN13TzM/QmWkB9MGNxkpRXGbjmPal/aGTRhdo3jhpRBrQZs3nm3l2WcVy/YwiTSjU3ryJYCxJHYve3xKQbfn/IBvj2dc19hlot/L5VHp/aJGJTWb7yEcBVKbRgpiOIOEFo6EMaIivwRI2Ev86hg7rSSz6PWvBCQFdOvt2uaTepI88dxAIcFpF0vrY9RpmbHaoYZrHwm0HZmlv61U0DtOkVA0aFTGyFeB2TCmDu3HGPgDfs3dtAl0F4d0HwmVbZebe4ke1sNF3N7ealhVs3i7zBqElkKaUkzid3wY53Rj0Pp0db4NMNe+TGRZ/Poj5oart20k1+xepRrI6Op/MjRz2LKHx/D99Yv1h5dE8umubnkzIsCB1T/ts6ZeHjZLVn9OJgIqMfxZq4PH8cYpdoKYkbSKjGGzhgGeQ4NH+1me/JTSR/IzRkS1oS3q3K0oIVoPWXS2wZZ52jfufIhK2so8t+vg9Ld7SvTb7wb5kKgrWFIy162y5Twa3nD/ElMa9CVIBG233fz7ZQe6b/bTcClXp5/CT2SDzmm1m1U8VQTq2pA5yo/BVb70SS7g5doDwLT/Nc9/+1Qs3bUkHAH3io+DfHVb5oQ8CjC3Xn6XQWoOMVAMBoE+n5o7NnhLT8i0wCVHgaCzfA7Uvg=
+            secure: pL280LwIwMgZ4JsIVfEW9o943kOTnZXuGmlqJWNbaQbvpMPQ1TGYJoE0REp93q+HO8+0uNpLTwCkg9J3AlCQSmaRwaZSJfu0Q8n8uEmM2Dc1QBnBoAqa99RcHwO6Odz947H8OCXlUJg8az4CRcP+uqtSFIlWfrCDgd4hLVHd7hbHKVLSrI3J9WDHYEAmUT1jAp3GHHl4kQ/JIP9GPJ12B6W8H8okn2TRcbuiYwWdf7MGBGRkcaMeT+mf1tKHDdY/qXlXslMTvYc6m2k/eIrL7bHq5SdXcGAQbKxByG5dhAnSGSuf8esYMxJbrffHuIihl//ly8KEvR6pp3ACdhf7w/Tpf+mn0Jk5CpilYRIPhkiCxWCOxMQ3+v/Z5MsMI4vR5ZMwQxt7gAALG++sh8nK8coxSQ4+gGhMlCcjmPkgpkcYoQRMONxwB3+IXNsYwdXJNhCnjmMVGtb9NrxdjwjBTt08RLsrUjMVDe3XBmCIU1Rr+FKrWGFg+gtuizg3mvOPPEl8ftptfSkrmBHWzQbAuTirtuLNtX3Y7f7mENqSX2Sdiezv7+KadMsKndMTJJCWIX1wIfdMelMDT1r16XRGKCJzGTsjot7c9VI5AdvjkjR9gB3KiHbUojtLc/r4PTnOWH37QksSwY/Y0xOh2E+cMicv7GpvLWZxys/uP+NnU+Q=
 
     - <<: *generator
       node_js: 8
