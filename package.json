@@ -64,7 +64,7 @@
   "devDependencies": {
     "@types/glob": "^5.0.33",
     "@types/lodash": "^4.14.85",
-    "@types/node": "^8.0.53",
+    "@types/node": "^9.3.0",
     "@types/tmp": "0.0.33",
     "@types/yeoman-generator": "^2.0.0",
     "@types/yeoman-test": "^1.7.3",
