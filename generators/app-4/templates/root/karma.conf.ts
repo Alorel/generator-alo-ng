@@ -1,5 +1,4 @@
 //tslint:disable
-import {Application, Request, Response} from 'express';
 import {cpus} from 'os';
 import * as puppeteer from 'puppeteer';
 
@@ -19,24 +18,7 @@ export default config => {
 
     // Frameworks to use.
     // Available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['expressServer', 'jasmine'],
-
-    expressServer: {
-      extensions: [
-        (app: Application) => {
-          const fixture = require('./test-fixtures/server-response.json');
-
-          app.get('/fetch/:user', (req: Request, res: Response) => {
-            console.debug(`Received request on ${req.url}`);
-            setTimeout(() => {
-              console.debug(`Responded to ${req.url}`);
-              res.json(fixture);
-            }, 200);
-          });
-        }
-      ],
-      serverPort: 5000
-    },
+    frameworks: ['jasmine'],
 
     // List of files to load in the browser.
     files: [
