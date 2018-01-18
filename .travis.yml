@@ -1,5 +1,6 @@
 sudo: false
 language: node_js
+group: travis_latest
 
 generator: &generator
   stage: test generator
