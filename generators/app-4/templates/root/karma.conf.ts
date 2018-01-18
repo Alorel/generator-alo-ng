@@ -1,16 +1,42 @@
+//tslint:disable
+import {Application, Request, Response} from 'express';
+import {cpus} from 'os';
 import * as puppeteer from 'puppeteer';
 
 export default config => {
   process.env.CHROME_BIN = puppeteer.executablePath();
   process.env.WEBPACK_COMPILE_MODE = require('./build/util/compile-mode').TEST;
 
-  config.set({
+  const reports = ['text-summary'];
+
+  const finalConfig: any = {
     // Base path that will be used to resolve all patterns (eg. files, exclude).
     basePath: './',
 
+    concurrency: cpus().length,
+
+    port: 9876,
+
     // Frameworks to use.
     // Available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['expressServer', 'jasmine'],
+
+    expressServer: {
+      extensions: [
+        (app: Application) => {
+          const fixture = require('./test-fixtures/server-response.json');
+
+          app.get('/fetch/:user', (req: Request, res: Response) => {
+            console.debug(`Received request on ${req.url}`);
+            setTimeout(() => {
+              console.debug(`Responded to ${req.url}`);
+              res.json(fixture);
+            }, 200);
+          });
+        }
+      ],
+      serverPort: 5000
+    },
 
     // List of files to load in the browser.
     files: [
@@ -39,8 +65,8 @@ export default config => {
     },
 
     coverageIstanbulReporter: {
-      reports: ['text-summary', 'html', 'lcovonly'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      reports
     },
 
     // Test results reporter to use.
@@ -57,16 +83,31 @@ export default config => {
     // - config.LOG_DEBUG
     logLevel: config.LOG_WARN,
 
-    // Start these browsers.
-    // Available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeHeadless'],
-
     browserConsoleLogOptions: {
-      terminal: true,
-      level: 'log'
+      level: 'log',
+      terminal: true
     },
 
-    singleRun: true,
-    colors: true
-  });
+    colors: true,
+
+    singleRun: true
+  };
+
+  if (!process.env.CI) {
+    reports.push('html');
+
+    finalConfig.browsers = ['ChromeHeadless'];
+  } else {
+    reports.push('lcovonly');
+
+    finalConfig.browsers = ['ChromeHeadlessTravis'];
+    finalConfig.customLaunchers = {
+      ChromeHeadlessTravis: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    };
+  }
+
+  config.set(finalConfig);
 };
