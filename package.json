@@ -52,7 +52,7 @@
     "url": "https://github.com/Alorel/generator-alo-ng/issues"
   },
   "dependencies": {
-    "cross-spawn": "^5.1",
+    "cross-spawn": "^6.0.0",
     "generator-license": "^5.2",
     "inquirer": "^5.0.0",
     "lodash": "^4.17",
