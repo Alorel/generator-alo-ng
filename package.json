@@ -66,7 +66,7 @@
     "@types/tmp": "0.0.33",
     "@types/yeoman-generator": "^2.0.0",
     "@types/yeoman-test": "^1.7.3",
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "coveralls": "^3.0.0",
     "custom-tslint-formatters": "^2.1.1",
     "glob": "^7.1.2",
