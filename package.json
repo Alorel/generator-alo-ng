@@ -71,7 +71,7 @@
     "custom-tslint-formatters": "^2.1.1",
     "glob": "^7.1.2",
     "husky": "^0.14.3",
-    "nyc": "^11.2.1",
+    "nyc": "^12.0.1",
     "rimraf": "^2.6.2",
     "tmp": "0.0.33",
     "tslint": "^5.8.0",
